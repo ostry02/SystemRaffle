@@ -1,5 +1,6 @@
 package org.example.sql;
 
+import org.example.raffle.RaffleActivity;
 import org.example.raffle.RaffleInfo;
 
 import java.sql.*;
@@ -38,5 +39,24 @@ public class DataBaseControllerRaffleProducts {
             e.printStackTrace();
         }
         return raffleList;
+    }
+    public void AddRaffle(RaffleInfo raffleInfo, RaffleActivity raffleActivity){
+        String sqlCMD = "INSERT INTO raffleProducts (productName, productSKU, productPrice, startRaffleDate, endRaffleDate, isActive) VALUES (?,?,?,?,?,?)";
+        Date startDate = Date.valueOf(raffleInfo.getStartRaffleDate());
+        Date endDate = Date.valueOf(raffleInfo.getEndRaffleDate());
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlCMD);
+            preparedStatement.setString(1, raffleInfo.getProductName());
+            preparedStatement.setString(2, raffleInfo.getProductSKU());
+            preparedStatement.setString(3, raffleInfo.getProductPrice());
+            preparedStatement.setDate(4, startDate);
+            preparedStatement.setDate(5, endDate);
+            preparedStatement.setBoolean(6, raffleActivity.isActive());
+            preparedStatement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException exception){
+            System.out.println("Prawodopodnie produkt jest już w Bazie Danych RAFFLEPRODUCTS");
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
     }
 }

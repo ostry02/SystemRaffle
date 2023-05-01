@@ -17,6 +17,7 @@ public class RaffleInfo extends ProductInfo {
         this.endRaffleDate = endRaffleDate;
     }
 
+
     public LocalDate getStartRaffleDate() {
         return startRaffleDate;
     }

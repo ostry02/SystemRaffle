@@ -45,6 +45,7 @@ public class DataBaseControllerSubmissions {
                 ));
             }
         }catch (Exception e){
+            System.out.println("nie mozna tak");
             e.printStackTrace();
         }
         return usersList;
