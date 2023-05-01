@@ -15,7 +15,7 @@ public class DataBaseControllerSubmissions {
     public DataBaseControllerSubmissions(){
         String url = "jdbc:mysql://localhost:3306/RaffleProjekt";
         String user = "root";
-        String password = "abc";
+        String password = "qwerty1";
         try {
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Udalo sie polaczyc z Baza Danych SUBMISSIONS");
