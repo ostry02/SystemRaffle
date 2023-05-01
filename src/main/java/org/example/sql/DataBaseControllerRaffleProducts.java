@@ -48,9 +48,9 @@ public class DataBaseControllerRaffleProducts extends DataBaseControllerSubmissi
         Date endDate = Date.valueOf(raffleInfo.getEndRaffleDate());
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlCMD);
-            preparedStatement.setString(1, raffleInfo.getProductName());
-            preparedStatement.setString(2, raffleInfo.getProductSKU());
-            preparedStatement.setString(3, raffleInfo.getProductPrice());
+            preparedStatement.setString(1, raffleInfo.getProductName().toLowerCase());
+            preparedStatement.setString(2, raffleInfo.getProductSKU().toUpperCase());
+            preparedStatement.setString(3, raffleInfo.getProductPrice().toLowerCase());
             preparedStatement.setDate(4, startDate);
             preparedStatement.setDate(5, endDate);
             preparedStatement.setBoolean(6, raffleActivity.isActive());

@@ -2,11 +2,9 @@ package org.example.sql;
 
 import org.example.user.UserInfo;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DataBaseControllerSubmissions {
@@ -50,29 +48,57 @@ public class DataBaseControllerSubmissions {
         }
         return usersList;
     }
-//    public void createTableForRaffle(){
-//        String sqlCMD = "CREATE TABLE IF NOT EXISTS submissions (\n" +
-//                "  `id` int NOT NULL AUTO_INCREMENT,\n" +
-//                "  `firstName` varchar(45) DEFAULT NULL,\n" +
-//                "  `lastName` varchar(45) DEFAULT NULL,\n" +
-//                "  `email` varchar(45) DEFAULT NULL,\n" +
-//                "  `phoneNumber` varchar(45) DEFAULT NULL,\n" +
-//                "  `addressStreet` varchar(45) DEFAULT NULL,\n" +
-//                "  `addressNumber` varchar(45) DEFAULT NULL,\n" +
-//                "  `addressPostCode` varchar(45) DEFAULT NULL,\n" +
-//                "  `country` varchar(45) DEFAULT NULL,\n" +
-//                "  `productSize` varchar(45) DEFAULT NULL,\n" +
-//                "  `instagramHandle` varchar(45) DEFAULT NULL,\n" +
-//                "  PRIMARY KEY (`id`),\n" +
-//                "  UNIQUE KEY `email_UNIQUE` (`email`),\n" +
-//                "  UNIQUE KEY `phoneNumber_UNIQUE` (`phoneNumber`),\n" +
-//                "  UNIQUE KEY `instagramHandle_UNIQUE` (`instagramHandle`)\n" +
-//                ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;\n";
-//        try {
-//            Statement statement = connection.createStatement();
-//            statement.execute(sqlCMD);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
+    public void addSubmission(UserInfo userInfo, Integer id){
+        String sqlCMD = "INSERT INTO RaffleProjekt."+id+" (firstName, lastName, email, phoneNumber, addressStreet, addressNumber, addressPostCode, country, productSize, instagramHandle) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String countryUpper = userInfo.getCountry().substring(0,1)+userInfo.getCountry().substring(1);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlCMD);
+            preparedStatement.setString(1, userInfo.getFirstName().toLowerCase());
+            preparedStatement.setString(2, userInfo.getLastName().toLowerCase());
+            try {
+                preparedStatement.setString(3, userInfo.getEmail().toLowerCase());
+            }catch (Exception e){
+                System.out.println("Juz taki mail jest");
+            }
+            try {
+                preparedStatement.setString(4, userInfo.getPhoneNumber().toLowerCase());
+            }catch (Exception e){
+                System.out.println("Juz taki telefon juz jest");
+            }
+            preparedStatement.setString(5, userInfo.getAddressStreet().toLowerCase());
+            preparedStatement.setString(6, userInfo.getAddressNumber().toLowerCase());
+            preparedStatement.setString(7, userInfo.getAddressPostCode().toLowerCase());
+            preparedStatement.setString(8, countryUpper);
+            preparedStatement.setString(9, userInfo.getProductSize().toLowerCase());
+            try {
+                preparedStatement.setString(10, userInfo.getInstagramHandle().toLowerCase());
+            }catch (Exception e){
+                System.out.println("Już taki instagram jest");
+            }
+            preparedStatement.executeUpdate();
+            System.out.println("Dodano do listy uczestnika");
+        } catch (SQLSyntaxErrorException exception){
+            System.out.println("Nie ma takiego raffle, sprobój inny ID");
+        } catch (Exception e){
+            System.out.println("Taki submission juz jest, nie dodano uczestnika");
+        }
+    }
+
+    public List<Integer> displayIDRaffle(Integer id){
+        List<Integer> listIDraffle = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id FROM RaffleProjekt."+id);
+            while (resultSet.next()){
+                listIDraffle.add(resultSet.getInt("id"));
+            }
+            Collections.sort(listIDraffle);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listIDraffle;
+    }
+
+
+
 }
