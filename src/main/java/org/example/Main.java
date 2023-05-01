@@ -17,9 +17,12 @@ public class Main {
         RaffleActivity raffleActivity = new RaffleActivity("Jordan 4","CT852-0","899",
                 LocalDate.of(2023,4,10),LocalDate.of(2023,4,20));
         jordan4.setProductPrice("1203");
-        jordan4.setProductSKU("CSGO-123");
-
+        jordan4.setProductSKU("asdasdasqe123-123");
         dBCRProd.AddRaffle(jordan4,raffleActivity);
+        System.out.println(dBCRProd.wyswietlID());
+        System.out.println(dBCRProd.getLastID());
+
+
 
 
 //        RaffleActivity raffleActivity = new RaffleActivity(

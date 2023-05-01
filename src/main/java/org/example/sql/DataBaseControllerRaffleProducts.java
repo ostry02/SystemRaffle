@@ -1,13 +1,15 @@
 package org.example.sql;
 
+import org.example.product.ProductInfo;
 import org.example.raffle.RaffleActivity;
 import org.example.raffle.RaffleInfo;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class DataBaseControllerRaffleProducts {
+public class DataBaseControllerRaffleProducts extends DataBaseControllerSubmissions {
     private Connection connection;
     public DataBaseControllerRaffleProducts(){
         String url = "jdbc:mysql://localhost:3306/RaffleProjekt";
@@ -53,10 +55,55 @@ public class DataBaseControllerRaffleProducts {
             preparedStatement.setDate(5, endDate);
             preparedStatement.setBoolean(6, raffleActivity.isActive());
             preparedStatement.executeUpdate();
+            createTableForRaffle();
         } catch (SQLIntegrityConstraintViolationException exception){
             System.out.println("Prawodopodnie produkt jest już w Bazie Danych RAFFLEPRODUCTS");
         } catch (Exception e ){
             e.printStackTrace();
         }
     }
+    public List<Integer> displayID(){
+        List<Integer> listID = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id FROM raffleProducts");
+            while (resultSet.next()){
+                listID.add(resultSet.getInt("id"));
+            }
+            Collections.sort(listID);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listID;
+    }
+    public Integer getLastID(){
+        return displayID().get(displayID().size()-1);
+    }
+    public void createTableForRaffle(){
+        String sqlCMD = "CREATE TABLE IF NOT EXISTS RaffleProjekt."+getLastID()+" (\n" +
+                "  id int NOT NULL AUTO_INCREMENT,\n" +
+                "  firstName varchar(45) DEFAULT NULL,\n" +
+                "  lastName varchar(45) DEFAULT NULL,\n" +
+                "  email varchar(45) DEFAULT NULL,\n" +
+                "  phoneNumber varchar(45) DEFAULT NULL,\n" +
+                "  addressStreet varchar(45) DEFAULT NULL,\n" +
+                "  addressNumber varchar(45) DEFAULT NULL,\n" +
+                "  addressPostCode varchar(45) DEFAULT NULL,\n" +
+                "  country varchar(45) DEFAULT NULL,\n" +
+                "  productSize varchar(45) DEFAULT NULL,\n" +
+                "  instagramHandle varchar(45) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`id`),\n" +
+                "  UNIQUE KEY `email_UNIQUE` (`email`),\n" +
+                "  UNIQUE KEY `phoneNumber_UNIQUE` (`phoneNumber`),\n" +
+                "  UNIQUE KEY `instagramHandle_UNIQUE` (`instagramHandle`)\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;\n";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(sqlCMD);
+        }catch (Exception e){
+            System.out.println("tutaj jest cos nie tak");
+            e.printStackTrace();
+        }
+    }
+
 }
