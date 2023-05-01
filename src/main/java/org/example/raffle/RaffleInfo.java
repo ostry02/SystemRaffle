@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class RaffleInfo extends ProductInfo {
     private LocalDate startRaffleDate;
     private LocalDate endRaffleDate;
+    private final LocalDate localDate = LocalDate.now();
 
     public RaffleInfo(String productName, String productSKU, String productPrice, LocalDate startRaffleDate, LocalDate endRaffleDate) {
         super(productName, productSKU, productPrice);
@@ -30,6 +31,10 @@ public class RaffleInfo extends ProductInfo {
 
     public void setEndRaffleDate(LocalDate endRaffleDate) {
         this.endRaffleDate = endRaffleDate;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 
     @Override
