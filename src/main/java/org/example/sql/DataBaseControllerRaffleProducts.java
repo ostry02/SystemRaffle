@@ -11,7 +11,7 @@ public class DataBaseControllerRaffleProducts {
     public DataBaseControllerRaffleProducts(){
         String url = "jdbc:mysql://localhost:3306/RaffleProjekt";
         String user = "root";
-        String password = "Gargu3366";
+        String password = "abc";
         try {
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Udalo sie polaczyc z Baza Danych RAFFLEPRODUCTS");
