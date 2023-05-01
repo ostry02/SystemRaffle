@@ -1,4 +1,4 @@
-package org.example.userInfo;
+package org.example.user;
 
 public class UserInfo extends UserAddress{
     private String firstName;

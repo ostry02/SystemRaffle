@@ -9,28 +9,27 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBaseControllerUser {
+public class DataBaseControllerSubmissions {
     private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
-    public DataBaseControllerUser(){
+
+    public DataBaseControllerSubmissions(){
         String url = "jdbc:mysql://localhost:3306/RaffleProjekt";
         String user = "root";
         String password = "Gargu3366";
         try {
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Udalo sie polaczyc z Baza Danych");
+            System.out.println("Udalo sie polaczyc z Baza Danych SUBMISSIONS");
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("Nie udalo sie polaczyc z Baza Danych");
         }
     }
-    public List<UserInfo> displayDataBase(){
+    public List<UserInfo> displayDataBaseSUBMISSIONS(){
         List<UserInfo> usersList = new ArrayList<>();
         String sqlCMD = "SELECT * FROM submissions";
         try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sqlCMD);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlCMD);
             while (resultSet.next()) {
                 usersList.add(new UserInfo(
                         resultSet.getString("firstname"),
