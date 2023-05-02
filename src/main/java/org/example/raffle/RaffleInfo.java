@@ -10,7 +10,7 @@ public class RaffleInfo extends ProductInfo {
     private LocalDate endRaffleDate;
     private final LocalDate localDate = LocalDate.now();
 
-    public RaffleInfo(String productName, String productSKU, String productPrice, LocalDate startRaffleDate, LocalDate endRaffleDate) {
+    public RaffleInfo(String productName, String productSKU, Double productPrice, LocalDate startRaffleDate, LocalDate endRaffleDate) {
         super(productName, productSKU, productPrice);
         this.startRaffleDate = startRaffleDate;
         this.endRaffleDate = endRaffleDate;

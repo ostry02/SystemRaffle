@@ -7,9 +7,9 @@ public class ProductInfo{
     private Integer id;
     private String productName;
     private String productSKU;
-    private String productPrice;
+    private Double productPrice;
 
-    public ProductInfo(String productName, String productSKU, String productPrice) {
+    public ProductInfo(String productName, String productSKU, Double productPrice) {
         this.productName = productName;
         this.productSKU = productSKU;
         this.productPrice = productPrice;
@@ -39,11 +39,11 @@ public class ProductInfo{
         this.productSKU = productSKU;
     }
 
-    public String getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(Double productPrice) {
         this.productPrice = productPrice;
     }
 

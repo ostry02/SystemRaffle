@@ -18,9 +18,9 @@ public class Main {
         System.out.println();
         RaffleSizesStock raffleSizesStock = new RaffleSizesStock(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
         raffleSizesStock.assignStock();
-        RaffleInfo defultRaffleInfo = new RaffleActivity("Nike jordan 1 high","DZ5485-031","829.99",
-                LocalDate.of(2023,4,10), LocalDate.of(2023,5,6)); // to jest nie wazne
-        RaffleActivity raffleActivity = new RaffleActivity(defultRaffleInfo.getProductName(), defultRaffleInfo.getProductSKU(), defultRaffleInfo.getProductSKU(),  defultRaffleInfo.getStartRaffleDate(),defultRaffleInfo.getEndRaffleDate());
+        RaffleInfo defultRaffleInfo = new RaffleActivity("Nike jordan 1 high","DZ5485-031",829.99,
+                LocalDate.of(2023,5,10), LocalDate.of(2023,5,6)); // to jest nie wazne
+        RaffleActivity raffleActivity = new RaffleActivity(defultRaffleInfo.getProductName(), defultRaffleInfo.getProductSKU(), defultRaffleInfo.getProductPrice(),  defultRaffleInfo.getStartRaffleDate(),defultRaffleInfo.getEndRaffleDate());
 
 
         dBCRProd.AddRaffle(defultRaffleInfo, raffleActivity,raffleSizesStock);

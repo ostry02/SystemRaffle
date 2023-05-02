@@ -53,7 +53,7 @@ public class DataBaseControllerRaffleProducts  {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlCMD);
             preparedStatement.setString(1, raffleInfo.getProductName().toLowerCase());
             preparedStatement.setString(2, raffleInfo.getProductSKU().toUpperCase());
-            preparedStatement.setString(3, raffleInfo.getProductPrice().toLowerCase());
+            preparedStatement.setDouble(3, raffleInfo.getProductPrice());
             preparedStatement.setInt(4,raffleSizesStock.totalStock());
             preparedStatement.setDate(5, startDate);
             preparedStatement.setDate(6, endDate);
