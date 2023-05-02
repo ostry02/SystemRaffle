@@ -1,29 +1,48 @@
 package org.example.user;
 
+import org.example.product.ProductSizes;
+
+import java.util.List;
+
 public class UserInfo extends UserAddress{
+
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String productSize;
+    ProductSizes productSizes = new ProductSizes();
+    private List<Double> userSelectedSize;
+
     private String instagramHandle;
+
+    public void selectingSize(){
+        userSelectedSize = productSizes.universalSizesCM();
+    }
+
+    public List<Double> getUserSelectedSize() {
+        return userSelectedSize;
+    }
+
+    public void setUserSelectedSize(List<Double> userSelectedSize) {
+        this.userSelectedSize = userSelectedSize;
+    }
 
     public UserInfo(String firstName,
                     String lastName,
                     String email,
                     String phoneNumber,
+                    List<Double> userSelectedSize,
                     String addressStreet,
                     String addressNumber,
                     String addressPostCode,
                     String country,
-                    String productSize,
                     String instagramHandle) {
         super(addressStreet, addressNumber, addressPostCode, country);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.userSelectedSize = userSelectedSize;
         this.phoneNumber = phoneNumber;
-        this.productSize = productSize;
         this.instagramHandle = instagramHandle;
     }
 
@@ -59,14 +78,6 @@ public class UserInfo extends UserAddress{
         this.phoneNumber = phoneNumber;
     }
 
-    public String getProductSize() {
-        return productSize;
-    }
-
-    public void setProductSize(String productSize) {
-        this.productSize = productSize;
-    }
-
     public String getInstagramHandle() {
         return instagramHandle;
     }
@@ -82,7 +93,6 @@ public class UserInfo extends UserAddress{
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", productSize='" + productSize + '\'' +
                 ", instagramHandle='" + instagramHandle + '\'' +
                 " addressStreet='" + getAddressStreet() + '\'' +
                 ", addressNumber='" + getAddressNumber() + '\'' +

@@ -128,7 +128,7 @@ public class DataBaseControllerRaffleProducts  {
             Statement statement = connection.createStatement();
             statement.execute(sqlCMD);
         }catch (Exception e){
-            System.out.println("tutaj jest cos nie tak");
+            System.out.println("Problem z tworzeniem nowej tabeli pod raffle");
             e.printStackTrace();
         }
     }

@@ -61,22 +61,22 @@ public class DataBaseControllerSubmissions {
             preparedStatement.setString(2, userInfo.getLastName().toLowerCase());
             try {
                 preparedStatement.setString(3, userInfo.getEmail().toLowerCase());
-            }catch (Exception e){
+            }catch (SQLIntegrityConstraintViolationException e){
                 System.out.println("Juz taki mail jest");
             }
             try {
-                preparedStatement.setString(4, userInfo.getPhoneNumber().toLowerCase());
-            }catch (Exception e){
+                preparedStatement.setString(4, userInfo.getPhoneNumber());
+            }catch (SQLIntegrityConstraintViolationException e){
                 System.out.println("Juz taki telefon juz jest");
             }
             preparedStatement.setString(5, userInfo.getAddressStreet().toLowerCase());
-            preparedStatement.setString(6, userInfo.getAddressNumber().toLowerCase());
-            preparedStatement.setString(7, userInfo.getAddressPostCode().toLowerCase());
+            preparedStatement.setString(6, userInfo.getAddressNumber());
+            preparedStatement.setString(7, userInfo.getAddressPostCode());
             preparedStatement.setString(8, countryUpper);
-            preparedStatement.setString(9, userInfo.getProductSize().toLowerCase());
+            preparedStatement.setString(9, userInfo.getUserSelectedSize().toString().replace("[", "").replace("]",""));
             try {
                 preparedStatement.setString(10, userInfo.getInstagramHandle().toLowerCase());
-            }catch (Exception e){
+            }catch (SQLIntegrityConstraintViolationException e){
                 System.out.println("Już taki instagram jest");
             }
             preparedStatement.setString(11,collectIP());
@@ -84,10 +84,11 @@ public class DataBaseControllerSubmissions {
             System.out.println("Dodano do listy uczestnika");
         } catch (SQLSyntaxErrorException exception){
             System.out.println("Nie ma takiego raffle, sprobój inny ID");
-            exception.printStackTrace();
+        } catch (SQLIntegrityConstraintViolationException e){
+            System.out.println("Taki email, telefon lub intagram został juz uzyty");
         } catch (Exception e){
-            System.out.println("Taki submission juz jest, nie dodano uczestnika");
             e.printStackTrace();
+            System.out.println("Taki submission juz jest, nie dodano uczestnika");
         }
     }
 

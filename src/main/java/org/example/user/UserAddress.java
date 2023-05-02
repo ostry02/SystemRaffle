@@ -1,5 +1,7 @@
 package org.example.user;
 
+import org.example.product.ProductSizes;
+
 public class UserAddress {
     private String addressStreet;
     private String addressNumber;
