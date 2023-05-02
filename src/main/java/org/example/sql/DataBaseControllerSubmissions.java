@@ -1,11 +1,14 @@
 package org.example.sql;
 
+
 import org.example.user.UserInfo;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static org.example.user.UserIP.collectIP;
 
 public class DataBaseControllerSubmissions {
     private Connection connection;
@@ -22,35 +25,36 @@ public class DataBaseControllerSubmissions {
             System.out.println("Nie udalo sie polaczyc z Baza Danych");
         }
     }
-    public List<UserInfo> displayDataBaseSUBMISSIONS(){
-        List<UserInfo> usersList = new ArrayList<>();
-        String sqlCMD = "SELECT * FROM submissions";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlCMD);
-            while (resultSet.next()) {
-                usersList.add(new UserInfo(
-                        resultSet.getString("firstname"),
-                        resultSet.getString("lastname"),
-                        resultSet.getString("email"),
-                        resultSet.getString("phoneNumber"),
-                        resultSet.getString("addressStreet"),
-                        resultSet.getString("addressNumber"),
-                        resultSet.getString("addressPostCode"),
-                        resultSet.getString("country"),
-                        resultSet.getString("ProductSize"),
-                        resultSet.getString("instagramHandle")
-                ));
-            }
-        }catch (Exception e){
-            System.out.println("nie mozna tak");
-            e.printStackTrace();
-        }
-        return usersList;
-    }
+//    public List<UserInfo> displayDataBaseSUBMISSIONS(){
+//        List<UserInfo> usersList = new ArrayList<>();
+//        String sqlCMD = "SELECT * FROM submissions";
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(sqlCMD);
+//            while (resultSet.next()) {
+//                usersList.add(new UserInfo(
+//                        resultSet.getString("firstname"),
+//                        resultSet.getString("lastname"),
+//                        resultSet.getString("email"),
+//                        resultSet.getString("phoneNumber"),
+//                        resultSet.getString("addressStreet"),
+//                        resultSet.getString("addressNumber"),
+//                        resultSet.getString("addressPostCode"),
+//                        resultSet.getString("country"),
+//                        resultSet.getString("ProductSize"),
+//                        resultSet.getString("instagramHandle")
+//                ));
+//            }
+//        }catch (Exception e){
+//            System.out.println("nie mozna tak");
+//            e.printStackTrace();
+//        }
+//        return usersList;
+//    }
     public void addSubmission(UserInfo userInfo, Integer id){
-        String sqlCMD = "INSERT INTO RaffleProjekt."+id+" (firstName, lastName, email, phoneNumber, addressStreet, addressNumber, addressPostCode, country, productSize, instagramHandle) VALUES(?,?,?,?,?,?,?,?,?,?)";
-        String countryUpper = userInfo.getCountry().substring(0,1)+userInfo.getCountry().substring(1);
+        String sqlCMD = "INSERT INTO RaffleProjekt."+id+" (firstName, lastName, email, phoneNumber, addressStreet, addressNumber, addressPostCode, country, productSize, instagramHandle, addressIP) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String countryUpper = userInfo.getCountry().substring(0,1).toUpperCase()+userInfo.getCountry().substring(1);
+
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlCMD);
             preparedStatement.setString(1, userInfo.getFirstName().toLowerCase());
@@ -75,16 +79,19 @@ public class DataBaseControllerSubmissions {
             }catch (Exception e){
                 System.out.println("Już taki instagram jest");
             }
+            preparedStatement.setString(11,collectIP());
             preparedStatement.executeUpdate();
             System.out.println("Dodano do listy uczestnika");
         } catch (SQLSyntaxErrorException exception){
             System.out.println("Nie ma takiego raffle, sprobój inny ID");
+            exception.printStackTrace();
         } catch (Exception e){
             System.out.println("Taki submission juz jest, nie dodano uczestnika");
+            e.printStackTrace();
         }
     }
 
-    public List<Integer> displayIDRaffle(Integer id){
+    public List<Integer> displayIDsRaffle(Integer id){
         List<Integer> listIDraffle = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();

@@ -1,15 +1,15 @@
 package org.example.sql;
 
-import org.example.product.ProductInfo;
 import org.example.raffle.RaffleActivity;
 import org.example.raffle.RaffleInfo;
+import org.example.raffle.RaffleSizesStock;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DataBaseControllerRaffleProducts extends DataBaseControllerSubmissions {
+public class DataBaseControllerRaffleProducts  {
     private Connection connection;
     public DataBaseControllerRaffleProducts(){
         String url = "jdbc:mysql://localhost:3306/RaffleProjekt";
@@ -22,38 +22,64 @@ public class DataBaseControllerRaffleProducts extends DataBaseControllerSubmissi
             e.printStackTrace();
         }
     }
-    public List<RaffleInfo> displayDataBaseRAFFLEPRODUCTS(){
-        List<RaffleInfo> raffleList = new ArrayList<>();
-        String sqlCMD = "SELECT * FROM raffleProducts";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlCMD);
-            while (resultSet.next()) {
-                raffleList.add(new RaffleInfo(
-                        resultSet.getString("productName"),
-                        resultSet.getString("productSKU"),
-                        resultSet.getString("productPrice"),
-                        resultSet.getDate("startRaffleDate").toLocalDate(),
-                        resultSet.getDate("endRaffleDate").toLocalDate()
-                ));
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return raffleList;
-    }
-    public void AddRaffle(RaffleInfo raffleInfo, RaffleActivity raffleActivity){
-        String sqlCMD = "INSERT INTO raffleProducts (productName, productSKU, productPrice, startRaffleDate, endRaffleDate, isActive) VALUES (?,?,?,?,?,?)";
+//    public List<RaffleInfo> displayDataBaseRAFFLEPRODUCTS(){
+//        List<RaffleInfo> raffleList = new ArrayList<>();
+//        String sqlCMD = "SELECT * FROM raffleProducts";
+//        try {
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(sqlCMD);
+//            while (resultSet.next()) {
+//                raffleList.add(new RaffleInfo(
+//                        resultSet.getString("productName"),
+//                        resultSet.getString("productSKU"),
+//                        resultSet.getString("productPrice"),
+//                        resultSet.getInt("productStock"),
+//                        resultSet.getDate("startRaffleDate").toLocalDate(),
+//                        resultSet.getDate("endRaffleDate").toLocalDate()
+//                ));
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        return raffleList;
+//    }
+    public void AddRaffle(RaffleInfo raffleInfo, RaffleActivity raffleActivity, RaffleSizesStock raffleSizesStock){
+        String sqlCMD = "INSERT INTO raffleProducts (productName, productSKU, productPrice, productStock, startRaffleDate, endRaffleDate, isActive,stockSize4,stockSize45,stockSize5,stockSize55,stockSize6,stockSize65,stockSize7,stockSize75,stockSize8,stockSize85,stockSize9,stockSize95,stockSize10,stockSize105,stockSize11,stockSize115,stockSize12,stockSize125,stockSize13,stockSize135,stockSize14) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         Date startDate = Date.valueOf(raffleInfo.getStartRaffleDate());
         Date endDate = Date.valueOf(raffleInfo.getEndRaffleDate());
+        System.out.println(raffleSizesStock.getProductStockList().get(0));
+        System.out.println(raffleSizesStock.getProductStockList().get(20));
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sqlCMD);
             preparedStatement.setString(1, raffleInfo.getProductName().toLowerCase());
             preparedStatement.setString(2, raffleInfo.getProductSKU().toUpperCase());
             preparedStatement.setString(3, raffleInfo.getProductPrice().toLowerCase());
-            preparedStatement.setDate(4, startDate);
-            preparedStatement.setDate(5, endDate);
-            preparedStatement.setBoolean(6, raffleActivity.isActive());
+            preparedStatement.setInt(4,raffleSizesStock.totalStock());
+            preparedStatement.setDate(5, startDate);
+            preparedStatement.setDate(6, endDate);
+            preparedStatement.setBoolean(7, raffleActivity.isActive());
+            preparedStatement.setInt(8,raffleSizesStock.getProductStockList().get(0));
+            preparedStatement.setInt(9,raffleSizesStock.getProductStockList().get(1));
+            preparedStatement.setInt(10,raffleSizesStock.getProductStockList().get(2));
+            preparedStatement.setInt(11,raffleSizesStock.getProductStockList().get(3));
+            preparedStatement.setInt(12,raffleSizesStock.getProductStockList().get(4));
+            preparedStatement.setInt(13,raffleSizesStock.getProductStockList().get(5));
+            preparedStatement.setInt(14,raffleSizesStock.getProductStockList().get(6));
+            preparedStatement.setInt(15,raffleSizesStock.getProductStockList().get(7));
+            preparedStatement.setInt(16,raffleSizesStock.getProductStockList().get(8));
+            preparedStatement.setInt(17,raffleSizesStock.getProductStockList().get(9));
+            preparedStatement.setInt(18,raffleSizesStock.getProductStockList().get(10));
+            preparedStatement.setInt(19,raffleSizesStock.getProductStockList().get(11));
+            preparedStatement.setInt(20,raffleSizesStock.getProductStockList().get(12));
+            preparedStatement.setInt(21,raffleSizesStock.getProductStockList().get(13));
+            preparedStatement.setInt(22,raffleSizesStock.getProductStockList().get(14));
+            preparedStatement.setInt(23,raffleSizesStock.getProductStockList().get(15));
+            preparedStatement.setInt(24,raffleSizesStock.getProductStockList().get(16));
+            preparedStatement.setInt(25,raffleSizesStock.getProductStockList().get(17));
+            preparedStatement.setInt(26,raffleSizesStock.getProductStockList().get(18));
+            preparedStatement.setInt(27,raffleSizesStock.getProductStockList().get(19));
+            preparedStatement.setInt(28,raffleSizesStock.getProductStockList().get(20));
+
             preparedStatement.executeUpdate();
             createTableForRaffle();
         } catch (SQLIntegrityConstraintViolationException exception){
@@ -92,6 +118,7 @@ public class DataBaseControllerRaffleProducts extends DataBaseControllerSubmissi
                 "  country varchar(45) DEFAULT NULL,\n" +
                 "  productSize varchar(45) DEFAULT NULL,\n" +
                 "  instagramHandle varchar(45) DEFAULT NULL,\n" +
+                "  addressIP varchar(45) DEFAULT NULL,\n" +
                 "  PRIMARY KEY (`id`),\n" +
                 "  UNIQUE KEY `email_UNIQUE` (`email`),\n" +
                 "  UNIQUE KEY `phoneNumber_UNIQUE` (`phoneNumber`),\n" +

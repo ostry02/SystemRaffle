@@ -1,6 +1,8 @@
 package org.example.product;
 
 
+
+
 public class ProductInfo{
     private Integer id;
     private String productName;

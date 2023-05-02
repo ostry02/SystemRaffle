@@ -21,7 +21,7 @@ public class RaffleActivity extends RaffleInfo{
         }else if ((timeNow.isAfter(startRaffle)&& timeNow.isBefore(endRaffle)|| timeNow.equals(startRaffle))){
             System.out.println("Raffle juz trwa");
             return true;
-        } else if (timeNow.isAfter(endRaffle)) {
+        } else if (timeNow.isAfter(endRaffle) || timeNow.isEqual(endRaffle)) {
             System.out.println("Raffle juz sie skonczyl");
             return false;
         }else

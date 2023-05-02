@@ -3,7 +3,6 @@ package org.example.raffle;
 import org.example.product.ProductInfo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 public class RaffleInfo extends ProductInfo {
