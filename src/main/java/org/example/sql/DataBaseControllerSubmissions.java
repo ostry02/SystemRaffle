@@ -4,9 +4,7 @@ package org.example.sql;
 import org.example.user.UserInfo;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.example.user.UserIP.collectIP;
 
@@ -92,7 +90,7 @@ public class DataBaseControllerSubmissions {
         }
     }
 
-    public List<Integer> displayIDsRaffle(Integer id){
+    public List<Integer> displayALLIDsRaffle(Integer id){
         List<Integer> listIDraffle = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -106,6 +104,20 @@ public class DataBaseControllerSubmissions {
         }
         return listIDraffle;
     }
+    public Map<Integer, Double> displayALLSizes(Integer id){
+        Map<Integer, Double> MapSizeRaffle = new HashMap<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM RaffleProjekt."+id);
+            while (resultSet.next()){
+                MapSizeRaffle.put(resultSet.getInt("id"),resultSet.getDouble("productSize"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return MapSizeRaffle;
+    }
+
 
 
 

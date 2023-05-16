@@ -3,6 +3,7 @@ package org.example.draw;
 import org.example.raffle.RaffleSelectSizesStock;
 import org.example.sql.DataBaseControllerSubmissions;
 
+import java.util.List;
 import java.util.Random;
 
 public class DrawSystem extends RaffleSelectSizesStock{
@@ -17,14 +18,203 @@ public class DrawSystem extends RaffleSelectSizesStock{
     }
 
 
-    public void DrawForSize65(){
-        for (int i = 0; i<getStockForSize65(); i++){
-            int randomID = dBCSub.displayIDsRaffle(1).get(random.nextInt(dBCSub.displayIDsRaffle(1).size()));
+    public void DrawForSize65(int raffleID){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(raffleID);
+        if (getStockForSize65()<listOfIds.size()){
+            for (int i = 0; i<getStockForSize65(); i++) {
+                Integer randomID = listOfIds.get(random.nextInt(listOfIds.size()));
+                System.out.println("Wylosowany numer to: " + randomID);
+
+                listOfIds.remove(randomID);
+                System.out.println("Rozmiar tablicy: " + listOfIds.size());
+                System.out.println("Pozostale id: " + listOfIds);
+                System.out.println();
+            }
+        }else {
+            for (int i=0;i<listOfIds.size();i++){
+                System.out.println(listOfIds.get(i));
+            }
+        }
+    }
+    public void DrawForSize7(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(2);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(2).size();
+        for (int i = 0; i<getStockForSize7(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
             System.out.println("Wylosowany numer to: "+randomID);
 
-//            dBCSub.displayIDsRaffle(1).remove(randomID);
-            System.out.println("Rozmiar tablicy: "+dBCSub.displayIDsRaffle(1).size());
-            System.out.println("Pozostale id: "+dBCSub.displayIDsRaffle(1));
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize75(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(3);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(3).size();
+        for (int i = 0; i<getStockForSize75(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize8(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(4);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(4).size();
+        for (int i = 0; i<getStockForSize8(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize85(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(5);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(5).size();
+        for (int i = 0; i<getStockForSize85(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize9(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(6);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(6).size();
+        for (int i = 0; i<getStockForSize9(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize95(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(7);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(7).size();
+        for (int i = 0; i<getStockForSize95(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize10(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(8);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(8).size();
+        for (int i = 0; i<getStockForSize10(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize105(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(9);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(9).size();
+        for (int i = 0; i<getStockForSize105(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize11(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(10);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(10).size();
+        for (int i = 0; i<getStockForSize11(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize115(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(11);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(11).size();
+        for (int i = 0; i<getStockForSize115(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize12(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(12);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(12).size();
+        for (int i = 0; i<getStockForSize12(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize125(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(13);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(13).size();
+        for (int i = 0; i<getStockForSize125(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize13(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(14);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(14).size();
+        for (int i = 0; i<getStockForSize13(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
+            System.out.println();
+        }
+    }
+    public void DrawForSize135(){
+        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(15);
+        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(15).size();
+        for (int i = 0; i<getStockForSize135(); i++){
+            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
+            System.out.println("Wylosowany numer to: "+randomID);
+
+            listOfIds.remove(randomID);
+            System.out.println("Rozmiar tablicy: "+sizeOfListId);
+            System.out.println("Pozostale id: "+listOfIds);
             System.out.println();
         }
     }

@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.draw.DrawSeparateSizes;
 import org.example.draw.DrawSystem;
 import org.example.product.ProductSizes;
 import org.example.raffle.RaffleActivity;
@@ -39,32 +40,19 @@ public class Main {
 
 
         DrawSystem drawSystem = new DrawSystem(raffleSizesStock.getStockForSize4(), raffleSizesStock.getStockForSize45(), raffleSizesStock.getStockForSize5(), raffleSizesStock.getStockForSize55(), raffleSizesStock.getStockForSize6(), raffleSizesStock.getStockForSize65(), raffleSizesStock.getStockForSize7(), raffleSizesStock.getStockForSize75(), raffleSizesStock.getStockForSize8(), raffleSizesStock.getStockForSize85(), raffleSizesStock.getStockForSize9(), raffleSizesStock.getStockForSize95(), raffleSizesStock.getStockForSize10(), raffleSizesStock.getStockForSize105(), raffleSizesStock.getStockForSize11(), raffleSizesStock.getStockForSize115(), raffleSizesStock.getStockForSize12(), raffleSizesStock.getStockForSize125(), raffleSizesStock.getStockForSize13(), raffleSizesStock.getStockForSize135(), raffleSizesStock.getStockForSize14(),dBCSub);
-        drawSystem.DrawForSize65();
-//        System.out.println(dBCSub.displayIDsRaffle(1).size());
-//
-//        UserInfo userInfo = new UserInfo("Iwona","Ostrowska","iawda@gmail.com",
-//                "6928221", singletonList(productSizes.universalSizesCM().get(5)),"Grabiszynka","337","52-402","poland",
-//                "itddr");
-//
+        drawSystem.DrawForSize65(1);
 
-//        System.out.println(dBCSub.displayIDsRaffle(1).size());
+
+
+        UserInfo userInfo = new UserInfo("Iwona","Ostrowska","iawasdda@gmail.com",
+                "692823221", singletonList(productSizes.universalSizesCM().get(0)),"Grabiszynka","337","52-402","poland",
+                "itdasdddr");
+
 //        dBCSub.addSubmission(userInfo,1);
 
+        DrawSeparateSizes drawSeparateSizes = new DrawSeparateSizes(dBCSub);
+        drawSeparateSizes.separateSizes(1);
 
-
-
-//        System.out.println(dBCSub.displayIDsRaffle(1));
-//        Random random = new Random();
-//            if (dBCSub.displayIDsRaffle(1).size()> raffleSizesStock.getStockForSize1()) {
-//                for (int i=0; i< raffleSizesStock.getStockForSize1();i++) {
-//                    int randomID = dBCSub.displayIDsRaffle(1).get(random.nextInt(dBCSub.displayIDsRaffle(1).size()));
-//                    System.out.println(randomID);
-//                    dBCSub.displayIDsRaffle(1).remove(randomID);
-//                }
-//            }else {
-//                System.out.println(dBCSub.displayIDsRaffle(1));
-//
-//            }
 
 
 
