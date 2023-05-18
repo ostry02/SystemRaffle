@@ -3,6 +3,7 @@ package org.example.draw;
 import org.example.raffle.RaffleSelectSizesStock;
 import org.example.sql.DataBaseControllerSubmissions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -10,6 +11,7 @@ public class DrawSystem extends RaffleSelectSizesStock{
 
 
     DataBaseControllerSubmissions dBCSub;
+    DrawSeparateSizes drawSeparateSizes;
     private Random random = new Random();
 
     public DrawSystem(Integer stockForSize4, Integer stockForSize45, Integer stockForSize5, Integer stockForSize55, Integer stockForSize6, Integer stockForSize65, Integer stockForSize7, Integer stockForSize75, Integer stockForSize8, Integer stockForSize85, Integer stockForSize9, Integer stockForSize95, Integer stockForSize10, Integer stockForSize105, Integer stockForSize11, Integer stockForSize115, Integer stockForSize12, Integer stockForSize125, Integer stockForSize13, Integer stockForSize135, Integer stockForSize14, DataBaseControllerSubmissions dBCSub) {
@@ -34,19 +36,6 @@ public class DrawSystem extends RaffleSelectSizesStock{
             for (int i=0;i<listOfIds.size();i++){
                 System.out.println(listOfIds.get(i));
             }
-        }
-    }
-    public void DrawForSize7(){
-        List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(2);
-        Integer sizeOfListId = dBCSub.displayALLIDsRaffle(2).size();
-        for (int i = 0; i<getStockForSize7(); i++){
-            Integer randomID = listOfIds.get(random.nextInt(sizeOfListId));
-            System.out.println("Wylosowany numer to: "+randomID);
-
-            listOfIds.remove(randomID);
-            System.out.println("Rozmiar tablicy: "+sizeOfListId);
-            System.out.println("Pozostale id: "+listOfIds);
-            System.out.println();
         }
     }
     public void DrawForSize75(){

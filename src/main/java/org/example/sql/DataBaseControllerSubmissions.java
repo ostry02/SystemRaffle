@@ -104,18 +104,18 @@ public class DataBaseControllerSubmissions {
         }
         return listIDraffle;
     }
-    public Map<Integer, Double> displayALLSizes(Integer id){
-        Map<Integer, Double> MapSizeRaffle = new HashMap<>();
+    public List<Double> displayALLSizes(Integer id){
+        List<Double> ListSizeRaffle = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM RaffleProjekt."+id);
             while (resultSet.next()){
-                MapSizeRaffle.put(resultSet.getInt("id"),resultSet.getDouble("productSize"));
+                ListSizeRaffle.add(resultSet.getDouble("productSize"));
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return MapSizeRaffle;
+        return ListSizeRaffle;
     }
 
 
