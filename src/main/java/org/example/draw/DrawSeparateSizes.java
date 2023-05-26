@@ -21,18 +21,10 @@ public class DrawSeparateSizes {
 
         for (int i=0;i<allSizesSub.size();i++){
             if (allSizesSub.get(i).equals(6.5)){
-                System.out.println("siema ziomek");
+                System.out.println("to jest rozmiar 6.5");
             }
             System.out.println(allSizesSub.get(i));
         }
-//        for (var entry : allSizesSub.entrySet()) {
-//            System.out.println(entry.getKey() + ":" + entry.getValue());
-//            if (entry.getValue().equals(6.5)){
-//                mapSize65.put(entry.getKey(),entry.getValue());
-//            } else if (entry.getValue().equals(4.0)) {
-//                mapSize4.put(entry.getKey(),entry.getValue());
-//            }
-//        }
         System.out.println(mapSize65);
         return mapSize65;
     }

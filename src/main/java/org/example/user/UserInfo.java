@@ -5,26 +5,36 @@ import org.example.product.ProductSizes;
 import java.util.List;
 
 public class UserInfo extends UserAddress{
+    ProductSizes productSizes = new ProductSizes();
+    private Integer id;
 
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
-    ProductSizes productSizes = new ProductSizes();
     private List<Double> userSelectedSize;
+    private Double userSize; // zmienna aby sciagnac jaki rozmiar wybral uzytkownik z Listy userSelectedSize
 
     private String instagramHandle;
 
-    public void selectingSize(){
-        userSelectedSize = productSizes.universalSizesCM();
+    public Double getUserSize() {
+        return userSize;
     }
 
-    public List<Double> getUserSelectedSize() {
-        return userSelectedSize;
+    public void setUserSize(Double userSize) {
+        this.userSize = userSize;
     }
 
-    public void setUserSelectedSize(List<Double> userSelectedSize) {
-        this.userSelectedSize = userSelectedSize;
+    public UserInfo(Integer id, String firstName, String lastName, String email, String phoneNumber, String addressStreet, String addressNumber, String addressPostCode, String country, Double userSelectedSize, String instagramHandle) {
+        super(addressStreet, addressNumber, addressPostCode, country);
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userSize = userSelectedSize;
+        this.instagramHandle = instagramHandle;
+
     }
 
     public UserInfo(String firstName,
@@ -44,6 +54,38 @@ public class UserInfo extends UserAddress{
         this.userSelectedSize = userSelectedSize;
         this.phoneNumber = phoneNumber;
         this.instagramHandle = instagramHandle;
+    }
+
+    public UserInfo(String addressStreet, String addressNumber, String addressPostCode, String country, ProductSizes productSizes, Integer id, String firstName, String lastName, String email, String phoneNumber, List<Double> userSelectedSize, String instagramHandle) {
+        super(addressStreet, addressNumber, addressPostCode, country);
+        this.productSizes = productSizes;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userSelectedSize = userSelectedSize;
+        this.instagramHandle = instagramHandle;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void selectingSize(){
+        userSelectedSize = productSizes.universalSizesCM();
+    }
+
+    public List<Double> getUserSelectedSize() {
+        return userSelectedSize;
+    }
+
+    public void setUserSelectedSize(List<Double> userSelectedSize) {
+        this.userSelectedSize = userSelectedSize;
     }
 
     public String getFirstName() {

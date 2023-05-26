@@ -11,6 +11,7 @@ public class DrawSystem extends RaffleSelectSizesStock{
 
 
     DataBaseControllerSubmissions dBCSub;
+    RaffleSelectSizesStock raffleSelectSizesStock;
     DrawSeparateSizes drawSeparateSizes;
     private Random random = new Random();
 
@@ -20,12 +21,32 @@ public class DrawSystem extends RaffleSelectSizesStock{
     }
 
 
+//    public void DrawForSize65(int raffleID){
+//        List<Integer> listOfIds = new ArrayList<>();
+//        drawSeparateSizes.separateSizes(raffleID);
+//        if (getStockForSize65()<listOfIds.size()){
+//            for (int i = 0; i<getStockForSize65(); i++) {
+//                Integer randomID = listOfIds.get(random.nextInt(listOfIds.size()));
+//                System.out.println("Wylosowany numer to: " + randomID);
+//
+//                listOfIds.remove(randomID);
+//                System.out.println("Rozmiar tablicy: " + listOfIds.size());
+//                System.out.println("Pozostale id: " + listOfIds);
+//                System.out.println();
+//            }
+//        }else {
+//            for (int i=0;i<listOfIds.size();i++){
+//                System.out.println(listOfIds.get(i));
+//            }
+//        }
+//    }
     public void DrawForSize65(int raffleID){
         List<Integer> listOfIds = dBCSub.displayALLIDsRaffle(raffleID);
         if (getStockForSize65()<listOfIds.size()){
             for (int i = 0; i<getStockForSize65(); i++) {
                 Integer randomID = listOfIds.get(random.nextInt(listOfIds.size()));
                 System.out.println("Wylosowany numer to: " + randomID);
+                System.out.println("email tego zioma "+dBCSub.displayAllUsersFromRaffle(raffleID).get(randomID).getEmail());
 
                 listOfIds.remove(randomID);
                 System.out.println("Rozmiar tablicy: " + listOfIds.size());

@@ -118,6 +118,39 @@ public class DataBaseControllerSubmissions {
         return ListSizeRaffle;
     }
 
+        public List<UserInfo> displayAllUsersFromRaffle(Integer id){
+        List<UserInfo> usersList = new ArrayList<>();
+        String sqlCMD = "SELECT * FROM RaffleProjekt."+id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlCMD);
+            while (resultSet.next()) {
+                usersList.add(new UserInfo(
+                        resultSet.getInt("id"),
+                        resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("email"),
+                        resultSet.getString("phoneNumber"),
+                        resultSet.getString("addressStreet"),
+                        resultSet.getString("addressNumber"),
+                        resultSet.getString("addressPostCode"),
+                        resultSet.getString("country"),
+                        resultSet.getDouble("productSize"),
+                        resultSet.getString("instagramHandle")
+                        ));
+            }
+        } catch (SQLFeatureNotSupportedException exception){
+            exception.printStackTrace();
+        } catch (Exception e){
+            System.out.println("nie mozna tak");
+            e.printStackTrace();
+        }
+            return usersList;
+    }
+
+
+
+
 
 
 

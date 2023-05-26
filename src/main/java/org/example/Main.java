@@ -40,7 +40,7 @@ public class Main {
 
 
         DrawSystem drawSystem = new DrawSystem(raffleSizesStock.getStockForSize4(), raffleSizesStock.getStockForSize45(), raffleSizesStock.getStockForSize5(), raffleSizesStock.getStockForSize55(), raffleSizesStock.getStockForSize6(), raffleSizesStock.getStockForSize65(), raffleSizesStock.getStockForSize7(), raffleSizesStock.getStockForSize75(), raffleSizesStock.getStockForSize8(), raffleSizesStock.getStockForSize85(), raffleSizesStock.getStockForSize9(), raffleSizesStock.getStockForSize95(), raffleSizesStock.getStockForSize10(), raffleSizesStock.getStockForSize105(), raffleSizesStock.getStockForSize11(), raffleSizesStock.getStockForSize115(), raffleSizesStock.getStockForSize12(), raffleSizesStock.getStockForSize125(), raffleSizesStock.getStockForSize13(), raffleSizesStock.getStockForSize135(), raffleSizesStock.getStockForSize14(),dBCSub);
-        drawSystem.DrawForSize65(1);
+//        drawSystem.DrawForSize65(1);
 
 
 
@@ -51,13 +51,8 @@ public class Main {
 //        dBCSub.addSubmission(userInfo,1);
 
         DrawSeparateSizes drawSeparateSizes = new DrawSeparateSizes(dBCSub);
-        drawSeparateSizes.separateSizes(1);
-
-
-
-
-
-
+//        drawSeparateSizes.separateSizes(1);
+        System.out.println(dBCSub.displayAllUsersFromRaffle(1).get(0).getUserSize());
 
 
     }
