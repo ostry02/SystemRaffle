@@ -104,7 +104,7 @@ public class DataBaseControllerSubmissions {
         }
         return listIDraffle;
     }
-    public List<Double> displayALLSizes(Integer id){
+    public List<Double> displayALLSelectedSizes(Integer id){
         List<Double> ListSizeRaffle = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -148,6 +148,36 @@ public class DataBaseControllerSubmissions {
             return usersList;
     }
 
+    public List<UserInfo> displayAllUsersFromRaffleSpecSize(Integer id, Double size){
+        List<UserInfo> usersList = new ArrayList<>();
+        String sqlCMD = "SELECT * FROM RaffleProjekt."+id+
+                " WHERE productSize="+size;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlCMD);
+            while (resultSet.next()) {
+                usersList.add(new UserInfo(
+                        resultSet.getInt("id"),
+                        resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("email"),
+                        resultSet.getString("phoneNumber"),
+                        resultSet.getString("addressStreet"),
+                        resultSet.getString("addressNumber"),
+                        resultSet.getString("addressPostCode"),
+                        resultSet.getString("country"),
+                        resultSet.getDouble("productSize"),
+                        resultSet.getString("instagramHandle")
+                ));
+            }
+        } catch (SQLFeatureNotSupportedException exception){
+            exception.printStackTrace();
+        } catch (Exception e){
+            System.out.println("nie mozna tak");
+            e.printStackTrace();
+        }
+        return usersList;
+    }
 
 
 

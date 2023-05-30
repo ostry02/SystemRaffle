@@ -2,7 +2,6 @@ package org.example.product;
 
 
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,6 +9,7 @@ public class ProductSizes {
     private List<Double> productShoeSizes;
     private List<String> productClothesSizes;
 
+    /* Na razie nie uzywamy */
     public List<Double> nikeSizesM(){
         List<Double> nikeSizing = Arrays.asList(
                 36.0, 36.5, 37.0, 37.5, 38.0, 38.5, 39.0, 39.5,
@@ -20,6 +20,7 @@ public class ProductSizes {
         return productShoeSizes;
     }
 
+    /* Na razie nie uzywamy */
     public List<Double> adidasSizesM(){
         List<Double> adidasSizing = Arrays.asList(
                 36.0, 36.7, 37.3, 38.0, 38.7, 39.3, 40.0,
@@ -29,12 +30,15 @@ public class ProductSizes {
         return productShoeSizes;
     }
 
+    /* Na razie nie uzywamy */
     public List<String> clothesSizesM(){
         List<String> clothesSizing = Arrays.asList(
                 "S","M","L","XL","XXL");
         this.productClothesSizes = clothesSizing;
         return productClothesSizes;
     }
+
+    /* Uzywamy tylko universalSizesCM */
     public List<Double> universalSizesCM(){
         List<Double> universalSizing = Arrays.asList(
                 4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,
