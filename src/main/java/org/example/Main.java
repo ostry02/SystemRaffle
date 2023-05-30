@@ -8,7 +8,6 @@ import org.example.raffle.RaffleActivity;
 import org.example.raffle.RaffleInfo;
 import org.example.raffle.RaffleSizesStock;
 import org.example.sql.DataBaseControllerRaffleProducts;
-import org.example.sql.DataBaseControllerSubSizes;
 import org.example.sql.DataBaseControllerSubmissions;
 import org.example.user.UserInfo;
 
@@ -60,7 +59,7 @@ public class Main {
         DrawSystem drawSystem = new DrawSystem(raffleSizesStock.getStockForSize4(), raffleSizesStock.getStockForSize45(), raffleSizesStock.getStockForSize5(), raffleSizesStock.getStockForSize55(), raffleSizesStock.getStockForSize6(), raffleSizesStock.getStockForSize65(), raffleSizesStock.getStockForSize7(), raffleSizesStock.getStockForSize75(), raffleSizesStock.getStockForSize8(), raffleSizesStock.getStockForSize85(), raffleSizesStock.getStockForSize9(), raffleSizesStock.getStockForSize95(), raffleSizesStock.getStockForSize10(), raffleSizesStock.getStockForSize105(), raffleSizesStock.getStockForSize11(), raffleSizesStock.getStockForSize115(), raffleSizesStock.getStockForSize12(), raffleSizesStock.getStockForSize125(), raffleSizesStock.getStockForSize13(), raffleSizesStock.getStockForSize135(), raffleSizesStock.getStockForSize14(),dBCSub,separateSizes);
         /* Losowanie danego rozmiaru */
 //        System.out.println("id dla 65 "+separateSizes.getIdlistOfSize65());
-        drawSystem.DrawForSize65(15,6.5);
+        drawSystem.DrawForSize(15,6.5);
 //        System.out.println("stock 65 "+drawSystem.getStockForSize65());
 
 //        drawSystem.DrawForSize4(1);
