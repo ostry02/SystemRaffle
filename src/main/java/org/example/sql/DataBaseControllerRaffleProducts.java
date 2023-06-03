@@ -2,6 +2,7 @@ package org.example.sql;
 
 import org.example.raffle.RaffleActivity;
 import org.example.raffle.RaffleInfo;
+import org.example.raffle.RaffleSelectSizesStock;
 import org.example.raffle.RaffleSizesStock;
 
 import java.sql.*;
@@ -132,5 +133,41 @@ public class DataBaseControllerRaffleProducts  {
             e.printStackTrace();
         }
     }
-
+    public List<RaffleSelectSizesStock> getStockPerSize(Integer id){
+        String SQLcmd = "SELECT * FROM raffleProducts \n" +
+                        "WHERE id="+id;
+        List<RaffleSelectSizesStock> stockPerSize = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQLcmd);
+            while (resultSet.next()){
+                stockPerSize.add(new RaffleSelectSizesStock(
+                        resultSet.getInt("stockSize4"),
+                        resultSet.getInt("stockSize45"),
+                        resultSet.getInt("stockSize5"),
+                        resultSet.getInt("stockSize55"),
+                        resultSet.getInt("stockSize6"),
+                        resultSet.getInt("stockSize65"),
+                        resultSet.getInt("stockSize7"),
+                        resultSet.getInt("stockSize75"),
+                        resultSet.getInt("stockSize8"),
+                        resultSet.getInt("stockSize85"),
+                        resultSet.getInt("stockSize9"),
+                        resultSet.getInt("stockSize95"),
+                        resultSet.getInt("stockSize10"),
+                        resultSet.getInt("stockSize105"),
+                        resultSet.getInt("stockSize11"),
+                        resultSet.getInt("stockSize115"),
+                        resultSet.getInt("stockSize12"),
+                        resultSet.getInt("stockSize125"),
+                        resultSet.getInt("stockSize13"),
+                        resultSet.getInt("stockSize135"),
+                        resultSet.getInt("stockSize14")
+                ));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return stockPerSize;
+    }
 }

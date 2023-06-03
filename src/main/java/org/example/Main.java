@@ -60,10 +60,11 @@ public class Main {
         SeparateSizes separateSizes = new SeparateSizes(dBCSub);
         DrawSystem drawSystem = new DrawSystem(raffleSizesStock.getStockForSize4(), raffleSizesStock.getStockForSize45(), raffleSizesStock.getStockForSize5(), raffleSizesStock.getStockForSize55(), raffleSizesStock.getStockForSize6(), raffleSizesStock.getStockForSize65(), raffleSizesStock.getStockForSize7(), raffleSizesStock.getStockForSize75(), raffleSizesStock.getStockForSize8(), raffleSizesStock.getStockForSize85(), raffleSizesStock.getStockForSize9(), raffleSizesStock.getStockForSize95(), raffleSizesStock.getStockForSize10(), raffleSizesStock.getStockForSize105(), raffleSizesStock.getStockForSize11(), raffleSizesStock.getStockForSize115(), raffleSizesStock.getStockForSize12(), raffleSizesStock.getStockForSize125(), raffleSizesStock.getStockForSize13(), raffleSizesStock.getStockForSize135(), raffleSizesStock.getStockForSize14(),dBCSub,separateSizes);
         /* Losowanie danego rozmiaru */
-        drawSystem.DrawForSize(15,4.0);
+//        drawSystem.DrawForSize(15,4.0);
 
+        /* Wysylanie maili do wygranych */
         MailSender mailSender = new MailSender(drawSystem);
-        mailSender.SendEmail();
-
+//        mailSender.SendEmail();
+        System.out.println(dBCRProd.getStockPerSize(15).get(0).getStockForSize65());
     }
 }

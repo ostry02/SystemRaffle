@@ -214,4 +214,31 @@ public class RaffleSelectSizesStock {
     public void setStockForSize14(Integer stockForSize14) {
         this.stockForSize14 = stockForSize14;
     }
+
+    @Override
+    public String toString() {
+        return "RaffleSelectSizesStock{" +
+                "stockForSize4=" + stockForSize4 +
+                ", stockForSize45=" + stockForSize45 +
+                ", stockForSize5=" + stockForSize5 +
+                ", stockForSize55=" + stockForSize55 +
+                ", stockForSize6=" + stockForSize6 +
+                ", stockForSize65=" + stockForSize65 +
+                ", stockForSize7=" + stockForSize7 +
+                ", stockForSize75=" + stockForSize75 +
+                ", stockForSize8=" + stockForSize8 +
+                ", stockForSize85=" + stockForSize85 +
+                ", stockForSize9=" + stockForSize9 +
+                ", stockForSize95=" + stockForSize95 +
+                ", stockForSize10=" + stockForSize10 +
+                ", stockForSize105=" + stockForSize105 +
+                ", stockForSize11=" + stockForSize11 +
+                ", stockForSize115=" + stockForSize115 +
+                ", stockForSize12=" + stockForSize12 +
+                ", stockForSize125=" + stockForSize125 +
+                ", stockForSize13=" + stockForSize13 +
+                ", stockForSize135=" + stockForSize135 +
+                ", stockForSize14=" + stockForSize14 +
+                '}';
+    }
 }

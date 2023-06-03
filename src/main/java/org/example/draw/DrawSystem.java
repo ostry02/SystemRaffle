@@ -1,6 +1,7 @@
 package org.example.draw;
 
 import org.example.raffle.RaffleSelectSizesStock;
+import org.example.sql.DataBaseControllerRaffleProducts;
 import org.example.sql.DataBaseControllerSubmissions;
 import org.example.user.UserInfo;
 
@@ -10,7 +11,7 @@ import java.util.Random;
 
 public class DrawSystem extends RaffleSelectSizesStock{
 
-
+    DataBaseControllerRaffleProducts dBCRProd;
     DataBaseControllerSubmissions dBCSub;
     SeparateSizes separateSizes;
     private Random random = new Random();

@@ -151,7 +151,7 @@ public class DataBaseControllerSubmissions {
     public List<UserInfo> displayAllUsersFromRaffleSpecSize(Integer id, Double size){
         List<UserInfo> usersList = new ArrayList<>();
         String sqlCMD = "SELECT * FROM RaffleProjekt."+id+
-                " WHERE productSize="+size;
+                        " WHERE productSize="+size;
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlCMD);
