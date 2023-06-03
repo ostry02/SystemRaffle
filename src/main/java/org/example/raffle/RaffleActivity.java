@@ -3,6 +3,7 @@ package org.example.raffle;
 import java.time.LocalDate;
 
 public class RaffleActivity extends RaffleInfo{
+
     public RaffleActivity(String productName, String productSKU, Double productPrice, LocalDate startRaffleDate, LocalDate endRaffleDate) {
         super(productName, productSKU, productPrice, startRaffleDate, endRaffleDate);
     }
