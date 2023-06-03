@@ -4,6 +4,7 @@ import org.example.raffle.RaffleSelectSizesStock;
 import org.example.sql.DataBaseControllerSubmissions;
 import org.example.user.UserInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -19,7 +20,8 @@ public class DrawSystem extends RaffleSelectSizesStock{
         this.dBCSub = dBCSub;
         this.separateSizes = separateSizes;
     }
-
+    List<Integer> listOfWinnersID = new ArrayList<>();
+    List<String> listOfWinnersEmail = new ArrayList<>();
 
     public void DrawForSize(Integer raffleID, Double size){
         List<Integer> listOfIds = separateSizes.idsOfSize(raffleID,size);
@@ -30,16 +32,28 @@ public class DrawSystem extends RaffleSelectSizesStock{
                 Integer randomID = listOfIds.get(random.nextInt(listOfIds.size()));
                 System.out.println("Wylosowany numer to: " + randomID);
                 System.out.println("Email ziomka: "+ listOfUsers.get(listOfIds.indexOf(randomID)).getEmail());
+                listOfWinnersEmail.add(listOfUsers.get(listOfIds.indexOf(randomID)).getEmail());
                 listOfUsers.remove(listOfIds.indexOf(randomID));
+
+                listOfWinnersID.add(randomID);
                 listOfIds.remove(randomID);
                 System.out.println("Rozmiar tablicy: " + listOfIds.size());
                 System.out.println("Pozostale id: " + listOfIds);
                 System.out.println();
+
             }
         }else {
             for (int i=0;i<listOfIds.size();i++){
                 System.out.println(listOfIds.get(i));
             }
         }
+    }
+
+    public List<Integer> getListOfWinnersID() {
+        return listOfWinnersID;
+    }
+
+    public List<String> getListOfWinnersEmail() {
+        return listOfWinnersEmail;
     }
 }

@@ -4,6 +4,7 @@ package org.example;
 import org.example.draw.DrawSystem;
 import org.example.draw.SeparateSizes;
 import org.example.draw.email.MailMessagePrep;
+import org.example.draw.email.MailSender;
 import org.example.product.ProductSizes;
 import org.example.raffle.RaffleActivity;
 import org.example.raffle.RaffleInfo;
@@ -59,14 +60,10 @@ public class Main {
         SeparateSizes separateSizes = new SeparateSizes(dBCSub);
         DrawSystem drawSystem = new DrawSystem(raffleSizesStock.getStockForSize4(), raffleSizesStock.getStockForSize45(), raffleSizesStock.getStockForSize5(), raffleSizesStock.getStockForSize55(), raffleSizesStock.getStockForSize6(), raffleSizesStock.getStockForSize65(), raffleSizesStock.getStockForSize7(), raffleSizesStock.getStockForSize75(), raffleSizesStock.getStockForSize8(), raffleSizesStock.getStockForSize85(), raffleSizesStock.getStockForSize9(), raffleSizesStock.getStockForSize95(), raffleSizesStock.getStockForSize10(), raffleSizesStock.getStockForSize105(), raffleSizesStock.getStockForSize11(), raffleSizesStock.getStockForSize115(), raffleSizesStock.getStockForSize12(), raffleSizesStock.getStockForSize125(), raffleSizesStock.getStockForSize13(), raffleSizesStock.getStockForSize135(), raffleSizesStock.getStockForSize14(),dBCSub,separateSizes);
         /* Losowanie danego rozmiaru */
-        drawSystem.DrawForSize(15,6.5);
-        try{
-            MimeMessage message = MailMessagePrep.prepareTextMessageObject("ostry.1810@gmail.com","po ponownej probe","Widac m)");
-            Transport.send(message);
-        }catch (Exception e){
-            throw new RuntimeException(e.getMessage());
-        }
+        drawSystem.DrawForSize(15,4.0);
 
+        MailSender mailSender = new MailSender(drawSystem);
+        mailSender.SendEmail();
 
     }
 }
