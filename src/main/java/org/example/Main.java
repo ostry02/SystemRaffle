@@ -64,11 +64,11 @@ public class Main {
         DrawSystem drawSystem = new DrawSystem(
                 dBCSub, separateSizes, dBCRProd);
         /* Losowanie danego rozmiaru */
-        drawSystem.DrawSize(15,6.5);
+        drawSystem.DrawSize(15,6.5,5);
 
         /* Wysylanie maili do wygranych */
         MailSender mailSender = new MailSender(drawSystem);
-//        mailSender.SendEmail();
+        mailSender.SendEmail();
 //        System.out.println(dBCRProd.getStockPerSize(15).get(0).getStockForSize65());
     }
 }

@@ -26,7 +26,7 @@ public class DrawSystem{
     List<Integer> listOfWinnersID = new ArrayList<>();
     List<String> listOfWinnersEmail = new ArrayList<>();
 
-    public void DrawSize(Integer raffleID, Double size){
+    public void DrawSize(Integer raffleID, Double size, Integer sizeOfDraw){
         List<Integer> listOfIds = separateSizes.idsOfSize(raffleID, size);
         List<UserInfo> listOfUsers = dBCSub.displayAllUsersFromRaffleSpecSize(raffleID, size);
 //        System.out.println(listOfIds);
@@ -47,15 +47,15 @@ public class DrawSystem{
                 dBCRProd.getStockPerSize(raffleID).get(0).getStockForSize135(),dBCRProd.getStockPerSize(raffleID).get(0).getStockForSize14()
                 );
 //        System.out.println(listOfStock);
-        for (int j=0;j<listOfStock.size();j++) {
-            for (int i = 0; i < listOfStock.get(j); i++) {
+//        for (int j=0;j<listOfStock.size();j++) {
+            for (int i = 0; i < listOfStock.get(sizeOfDraw); i++) {
                 try {
                     Integer randomID = listOfIds.get(random.nextInt(listOfIds.size()));
                     System.out.println("Wylosowany numer to: " + randomID);
                     System.out.println("Email ziomka: " + listOfUsers.get(listOfIds.indexOf(randomID)).getEmail());
                     listOfWinnersEmail.add(listOfUsers.get(listOfIds.indexOf(randomID)).getEmail());
                     listOfUsers.remove(listOfIds.indexOf(randomID));
-                    System.out.println("To jest dla size "+listOfStock.get(j));
+//                    System.out.println("To jest dla size "+listOfStock.get(j));
                     listOfWinnersID.add(randomID);
                     listOfIds.remove(randomID);
                     System.out.println("Rozmiar tablicy: " + listOfIds.size());
@@ -65,7 +65,7 @@ public class DrawSystem{
                     System.out.println("nie ma wicej typa");
                 }
             }
-        }
+//        }
 //        }else {
 //            for (int i=0;i<listOfIds.size();i++){
 //                System.out.println(listOfIds.get(i));
